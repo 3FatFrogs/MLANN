@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.GA1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // GA1
             // 
-            this.button1.Location = new System.Drawing.Point(169, 494);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(351, 100);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.GA1.Location = new System.Drawing.Point(169, 494);
+            this.GA1.Name = "GA1";
+            this.GA1.Size = new System.Drawing.Size(351, 100);
+            this.GA1.TabIndex = 0;
+            this.GA1.Text = "GA";
+            this.GA1.UseVisualStyleBackColor = true;
+            this.GA1.Click += new System.EventHandler(this.GA1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 725);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.GA1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -55,7 +55,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button GA1;
     }
 }
 
