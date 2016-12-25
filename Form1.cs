@@ -33,12 +33,12 @@ namespace MLANN
         private void GA1_Click(object sender, EventArgs e)
         {
             //here a simple implementation of GA
-            //var data = DownloadData("AAPL", 2010);
+            var data = DownloadDataYahoo("YHOO+GOOG+AAPL", 2010);
 
             //https://www.elitetrader.com/et/threads/c-retrieving-yahoo-historical-prices.80912/
         }
 
-        public static List<HistoricalStock> DownloadData(string ticker, int yearToStartFrom)
+        public static List<HistoricalStock> DownloadDataYahoo(string ticker, int yearToStartFrom)
         {
             int month = 0;
             int day = 22;
