@@ -23,6 +23,8 @@ namespace MLANN
             public double Close { get; set; }
             public double Volume { get; set; }
             public double AdjClose { get; set; }
+            public string DataString { get; set; }
+            public string Header { get; set; }
         }
 
         public Form1()
@@ -33,33 +35,40 @@ namespace MLANN
         private void GA1_Click(object sender, EventArgs e)
         {
             //here a simple implementation of GA
-            var data = DownloadDataYahoo("YHOO+GOOG+AAPL", 2010);
+            var data = DownloadDataYahoo("AAPL", 2010);
+
+
+            foreach (var singleEntry in data)
+            {
+                this.listBox1.Items.Add(singleEntry.DataString);
+
+            }
 
             //https://www.elitetrader.com/et/threads/c-retrieving-yahoo-historical-prices.80912/
         }
 
-        public static List<HistoricalStock> DownloadDataYahoo(string ticker, int yearToStartFrom)
+        public static List<HistoricalStock> DownloadDataYahoo(
+            string ticker, int yearToStartFrom, int month = 0, int day = 1)
         {
-            int month = 0;
-            int day = 22;
 
             List<HistoricalStock> retval = new List<HistoricalStock>();
 
             using (WebClient web = new WebClient())
             {
                 var url = string.Format(
-                    "http://ichart.finance.yahoo.com/table.csv?s={0}&a={1}&b={2}&&c={3}", ticker, month, day, yearToStartFrom);
+                    "http://ichart.finance.yahoo.com/table.csv?s={0}&a={1}&b={2}&&c={3}", 
+                    ticker, 
+                    month, 
+                    day, 
+                    yearToStartFrom);
 
                 string data = web.DownloadString(url);
 
-                string[] rows = data.Split('\n');
+                var rows = data.Split('\n').Where(x => x.Length > 1).Skip(1).ToList();
 
-                //First row is headers so Ignore it
-                for (int i = 1; i < rows.Length; i++)
+                foreach (var row in rows)
                 {
-                    if (rows[i].Replace("n", "").Trim() == "") continue;
-
-                    string[] cols = rows[i].Split(',');
+                    string[] cols = row.Split(',');
 
                     HistoricalStock hs = new HistoricalStock();
                     hs.Date = Convert.ToDateTime(cols[0]);
@@ -69,6 +78,7 @@ namespace MLANN
                     hs.Close = Convert.ToDouble(cols[4]);
                     hs.Volume = Convert.ToDouble(cols[5]);
                     hs.AdjClose = Convert.ToDouble(cols[6]);
+                    hs.DataString = row;
 
                     retval.Add(hs);
                 }
