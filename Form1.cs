@@ -33,6 +33,11 @@ namespace MLANN
 
         private void GA1_Click(object sender, EventArgs e)
         {
+            /*
+             * http://infernet.azurewebsites.net/docs/Frequently%20Asked%20Questions.aspx
+             * http://www.heatonresearch.com/encog/
+             */
+             
             var data = DownloadDataYahoo("AAPL", 2010);
 
             foreach (var singleEntry in data)
@@ -40,7 +45,7 @@ namespace MLANN
                 this.listBox1.Items.Add(singleEntry.DataString);
             }
 
-            var data1 = DownloadIntradayDataGoogle("AAPL", "", 60, "10d");
+            var data1 = DownloadIntradayDataGoogle("AAPL", "", 86400, "100d");
 
             foreach (var singleEntry in data1)
             {
@@ -99,6 +104,7 @@ namespace MLANN
             string ticker, int yearToStartFrom, int month = 0, int day = 1)
         {
             //http://chartapi.finance.yahoo.com/instrument/1.0/GOOG/chartdata;type=quote;range=1d/csv
+            //http://chartapi.finance.yahoo.com/instrument/1.0/AAPL/chartdata;type=quote;range=5y/csv
 
             List<HistoricalStock> retval = new List<HistoricalStock>();
 
