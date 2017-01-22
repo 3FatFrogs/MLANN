@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using MySql.Data.MySqlClient;
 
 namespace MLANN
 {
@@ -24,18 +25,18 @@ namespace MLANN
     {
         public void ConnectToMySql()
         {
-            MySql.Data.MySqlClient.MySqlConnection conn;
+            MySqlConnection conn = null;
             string myConnectionString;
 
-            myConnectionString = "server=127.0.0.1;uid=root;" +
-                "pwd=Admin321;database=sakila;";
+            myConnectionString = GetConnectionString();
 
             try
             {
-                conn = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString);
+                conn = new MySqlConnection(myConnectionString);
                 conn.Open();
+                Console.WriteLine("MySQL version : {0}", conn.ServerVersion);
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
                 Console.Write(ex.Message);
                 switch (ex.Number)
@@ -50,6 +51,32 @@ namespace MLANN
 
                 throw ex;
             }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private static string GetConnectionString()
+        {
+            return "server=127.0.0.1;uid=root;" +
+                "pwd=Admin321;database=sakila;";
+        }
+
+        public MySqlConnection GetConnection()
+        {
+            MySqlConnection conn = null;
+            string myConnectionString;
+
+            myConnectionString = GetConnectionString();
+            conn = new MySqlConnection(myConnectionString);
+            conn.Open();
+
+            return conn;
+
         }
 
         public static List<HistoricalStock> DownloadDataYahoo(string ticker, int yearToStartFrom, int monthStart = 10, int dayStart = 1)
@@ -157,5 +184,20 @@ namespace MLANN
             return rows;
         }
 
+        public void SelectTest(string query)
+        {
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                cmd.CommandText = "mytable";
+                cmd.Connection = GetConnection();
+                cmd.CommandText = query;
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader[0] + "," + reader[1] + "," + reader[2] + "," + reader[3]);
+                }
+            }
+        }
     }
 }

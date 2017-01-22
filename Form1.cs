@@ -20,27 +20,27 @@ namespace MLANN
 
         private void GA1_Click(object sender, EventArgs e)
         {
-            var data = Utils.DownloadDataYahoo("AAPL", 2010);
+            var data = Utils.DownloadDataYahoo("AAPL", 1950);
 
-
-
-                foreach (var singleEntry in data)
+            foreach (var singleEntry in data)
             {
                 this.listBox1.Items.Add(singleEntry.DataString);
             }
 
-            var data1 = Utils.DownloadIntradayDataGoogle("AAPL", "", 86400, "100d");
+            //var data1 = Utils.DownloadIntradayDataGoogle("AAPL", "", 86400, "100d");
 
-            foreach (var singleEntry in data1)
-            {
-                this.listBox2.Items.Add(singleEntry);
-            }
+            //foreach (var singleEntry in data1)
+            //{
+            //    this.listBox2.Items.Add(singleEntry);
+            //}
         }
 
         private void LoadDB_Click(object sender, EventArgs e)
         {
             var conn = new Utils();
-            conn.ConnectToMySql();
+           
+            string stm = @"select * from sakila.actor;";
+            conn.SelectTest(stm);
         }
     }
 }
