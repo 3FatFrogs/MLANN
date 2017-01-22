@@ -31,6 +31,7 @@
             this.GA1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.LoadDB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GA1
@@ -61,11 +62,22 @@
             this.listBox2.Size = new System.Drawing.Size(1231, 283);
             this.listBox2.TabIndex = 2;
             // 
+            // LoadDB
+            // 
+            this.LoadDB.Location = new System.Drawing.Point(443, 33);
+            this.LoadDB.Name = "LoadDB";
+            this.LoadDB.Size = new System.Drawing.Size(351, 100);
+            this.LoadDB.TabIndex = 3;
+            this.LoadDB.Text = "Load Data";
+            this.LoadDB.UseVisualStyleBackColor = true;
+            this.LoadDB.Click += new System.EventHandler(this.LoadDB_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1427, 1109);
+            this.Controls.Add(this.LoadDB);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.GA1);
@@ -80,6 +92,7 @@
         private System.Windows.Forms.Button GA1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button LoadDB;
     }
 }
 

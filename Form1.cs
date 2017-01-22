@@ -37,7 +37,7 @@ namespace MLANN
              * http://infernet.azurewebsites.net/docs/Frequently%20Asked%20Questions.aspx
              * http://www.heatonresearch.com/encog/
              */
-             
+
             var data = DownloadDataYahoo("AAPL", 2010);
 
             foreach (var singleEntry in data)
@@ -162,5 +162,11 @@ namespace MLANN
 
             return rows;
         }
+
+        private void LoadDB_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
