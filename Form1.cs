@@ -40,7 +40,7 @@ namespace MLANN
             var conn = new Utils();
            
             string stm = @"select * from sakila.actor;";
-            conn.SelectTest(stm);
+            conn.ExecuteQuery(stm);
         }
     }
 }

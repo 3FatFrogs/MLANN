@@ -184,7 +184,7 @@ namespace MLANN
             return rows;
         }
 
-        public void SelectTest(string query)
+        public void ExecuteQuery(string query)
         {
             using (MySqlCommand cmd = new MySqlCommand())
             {
